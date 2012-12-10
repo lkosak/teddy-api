@@ -1,1 +1,1 @@
-TEDder API
+TEDdy API
