@@ -1,27 +1,24 @@
 var express = require('express');
 var app = express();
+var config = require('config')
 
-var mongodb = require('mongodb');
-var server = new mongodb.Server("127.0.0.1", 27017, {});
-var talks;
+var mongojs = require('mongojs');
+var mongo_url = process.env.MONGOHQ_URL || config.mongo_url;
 
-new mongodb.Db('tedder', server, {w: 1}).open(function (error, client) {
-  if (error) throw error;
-
-  talks = new mongodb.Collection(client, 'talks');
-});
-
+var db = mongojs(mongo_url, ['talks'])
 
 app.get('/v1/talks', function(req, res) {
   var offset = req.query['offset'] || 0
   var limit = req.query['limit'] || 30
 
-  talks.find({}, { skip: offset, limit: limit }).sort({ published_on: -1 }).toArray(function(err, items) {
-    output = JSON.stringify(items);
+  db.talks.find({}, { skip: offset, limit: limit }).sort({ published_on: -1 }, function(err, docs) {
+    output = JSON.stringify(docs);
     res.setHeader("Content-Type", "application/json");
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.end(output);
   });
 });
 
-app.listen(3000);
+var port = process.env.PORT || config.port;
+
+app.listen(port);
