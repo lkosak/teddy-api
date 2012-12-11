@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-var config = require('config')
+var config = require('./config')
 
 var mongojs = require('mongojs');
 var mongo_url = process.env.MONGOHQ_URL || config.mongo_url;
