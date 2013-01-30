@@ -1,7 +1,17 @@
 # TEDdy API #
 A tiny node.js app that dumps a collection of TED talks from mongodb.
 
-# Dependencies
+## Endpoints ##
+
+**/v1/talks**
+* format: JSON
+* params:
+  * offset (default: 0)
+  * limit (default: 30)
+
+Returns a set of talks. Includes all attributes.
+
+## Dependencies ##
 
 * mongodb (not sure what version; probably doesn't matter too much)
 
