@@ -1,5 +1,5 @@
 # TEDdy API #
-A tiny node.js app that dumps a collection of TED talks from mongodb.
+A tiny node.js app that dumps a collection of TED talks from mongodb. Used to power [TEDdy](http://github.com/lkosak/teddy)
 
 ## Endpoints ##
 
