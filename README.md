@@ -4,6 +4,7 @@ A tiny node.js app that dumps a collection of TED talks from mongodb.
 ## Endpoints ##
 
 ### Get talks ###
+------
 * `/v1/talks` returns a JSON collection of talks
 
 This accepts optional parameters `offset` (defaults to 0 if unspecified) and `limit` (defaults to 30 if unspecified).
