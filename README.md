@@ -11,12 +11,12 @@ A tiny node.js app that dumps a collection of TED talks from mongodb.
 `mongoimport -d tedder -c talks --type csv --file seeds/all_ted_talks_2012_11_29.csv --headerline`
 
 2. Convert dates. Within the mongodb client:
-`
-var cursor = db.talks.find()
-while (cursor.hasNext()) {
-  var doc = cursor.next();
-  db.talks.update({_id : doc._id}, {$set : {published_on : new Date(doc.published_on)}})
-}
-`
+```javascript
+    var cursor = db.talks.find()
+    while (cursor.hasNext()) {
+      var doc = cursor.next();
+      db.talks.update({_id : doc._id}, {$set : {published_on : new Date(doc.published_on)}})
+    }
+```
 
 3. That should do it!
